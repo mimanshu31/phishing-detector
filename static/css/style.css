@@ -1,0 +1,133 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+    background: black;
+}
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.card {
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(15px);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    width: 420px;
+    color: #00ffcc;
+    box-shadow: 0 0 25px rgba(0,255,200,0.5);
+    animation: float 4s ease-in-out infinite;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* INPUT */
+input {
+    width: 90%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 15px;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 10px #00ffcc;
+    transform: scale(1.02);
+}
+
+/* BUTTON */
+button {
+    padding: 12px 25px;
+    border-radius: 10px;
+    border: none;
+    background: #00ffcc;
+    color: black;
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* LOADER */
+.loader {
+    border: 5px solid #333;
+    border-top: 5px solid #00ffcc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+    display: none;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+/* FLOAT */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* RESULT */
+.result {
+    margin-top: 15px;
+    font-weight: bold;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 🔴 PHISHING EFFECT */
+.danger {
+    animation: dangerFlash 0.5s infinite alternate;
+}
+
+@keyframes dangerFlash {
+    from { box-shadow: 0 0 10px red; }
+    to { box-shadow: 0 0 25px red; }
+}
+
+/* 🟢 SAFE EFFECT */
+.safeEffect {
+    animation: safeGlow 1s infinite alternate;
+}
+
+@keyframes safeGlow {
+    from { box-shadow: 0 0 10px #00ffcc; }
+    to { box-shadow: 0 0 25px #00ffcc; }
+}
+
+/* FOOTER */
+.footer {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: #00ffcc;
+    font-size: 14px;
+}
+
+#matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
