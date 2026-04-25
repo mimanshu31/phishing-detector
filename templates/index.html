@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Healthcare Phishing Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+
+<!-- SOUND -->
+<audio id="scanSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+
+<div class="card">
+    <h2>AI Powered Phishing Detector</h2>
+
+    <form method="POST" onsubmit="showLoader()">
+        <input type="text" name="url" value="{{ url if url else '' }}" placeholder="Enter Website URL" required>
+        <br>
+        <button type="submit">Scan Now</button>
+    </form>
+
+    <div class="loader" id="loader"></div>
+    <div class="typing" id="typing"></div>
+
+    {% if result %}
+    <div class="result {% if result == 'Phishing Website' %}danger{% elif result == 'Safe Website' %}safeEffect{% endif %}">
+        
+        Result: {{ result }}
+
+        {% if result == "Safe Website" %}
+            <p style="color: #00ffcc;">✔️ This website looks safe</p>
+        {% elif result == "Phishing Website" %}
+            <p style="color: red;">⚠️ High Risk Website</p>
+        {% endif %}
+
+        <p>Risk Level: {{ risk }}%</p>
+
+        {% if reasons %}
+        <ul>
+            {% for r in reasons %}
+                <li>{{ r }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+<script>
+function showLoader() {
+    document.getElementById("loader").style.display = "block";
+
+    // sound
+    document.getElementById("scanSound").play();
+
+    let text = "Scanning website...";
+    let i = 0;
+
+    document.getElementById("typing").innerHTML = "";
+
+    function type() {
+        if (i < text.length) {
+            document.getElementById("typing").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, 50);
+        }
+    }
+
+    type();
+}
+
+particlesJS("particles-js", {
+    particles: {
+        number: { value: 80 },
+        size: { value: 3 },
+        move: { speed: 2 },
+        line_linked: { enable: true },
+        color: { value: "#00ffcc" }
+    }
+});
+</script>
+
+<div class="footer">
+    ~ MIMANSHU MISHRA | CSE (Q3)
+</div>
+
+</body>
+</html>
